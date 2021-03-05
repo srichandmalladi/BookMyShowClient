@@ -1,0 +1,14 @@
+<div class="container d-flex flex-wrap">
+  <div *ngFor="let movie of movies" class="m-4">
+    <div style="width: 20rem;" class="card">
+      <img class="card-img-top" src={{movie.imageUrl}} alt="Image not available">
+      <div class="card-body">
+        <h5 class="card-title">Movie: {{movie.title}}</h5>
+        <h5 class="card-title">Theatre: {{movie.name}}</h5>
+        <p class="card-text">{{movie.description}}</p>
+        <p class="card-text">Rating: {{movie.rating}}</p>
+        <a (click)="bookTickets(movie)" class="btn btn-primary">Book Tickets</a>
+      </div>
+    </div>
+  </div>
+</div>

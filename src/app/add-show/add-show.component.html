@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center m-5">
+  <form [formGroup]="formModel" autocomplete="off" class="col-md-8" (submit)="onSubmit()">
+
+    <div class="form-group required">
+      <label>Select City</label>
+      <select class="form-control" formControlName="SelectedCity" (change)="getTheatres()">
+        <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+      </select>
+      <label class="text-danger" *ngIf="formModel.get('SelectedCity').touched && formModel.get('SelectedCity').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+
+    <div class="form-group required">
+      <label>Select Theatre</label>
+      <select class="form-control" formControlName="Theatre" (change)="getMoviesAndSlot()">
+        <option disabled>Select Theatre</option>
+        <option *ngFor="let theatre of theatres" value="{{theatre.theatreId}}">{{theatre.name}}</option>
+      </select>
+      <label class="text-danger" *ngIf="formModel.get('Theatre').touched && formModel.get('Theatre').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+
+    <div class="form-group required">
+      <label>Select Movie</label>
+      <select class="form-control" formControlName="Movie">
+        <option disabled>Select Movie</option>
+        <option *ngFor="let movie of movies" value="{{movie.movieId}}">{{movie.title}}</option>
+      </select>
+      <label class="text-danger" *ngIf="formModel.get('Movie').touched && formModel.get('Movie').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+
+    <div class="form-group required">
+      <label>Select Slot</label>
+      <select formControlName="Slot" class="form-control">
+        <option disabled>Select Slot</option>
+        <option *ngFor="let i of li" value="{{i}}">{{i}}</option>
+      </select>
+      <label class="text-danger" *ngIf="formModel.get('Slot').touched && formModel.get('Slot').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button type="submit" class="btn btn-lg btn-block" [disabled]="!formModel.valid">Add Movie</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,30 @@
+<div class="ticket p-4">
+  <div class="container m-5">
+    <div class="text-white font-size-24">
+      Ticket Details
+    </div>
+    <div class="d-sm-flex mt-3">
+      <div class="text-white font-size-18 mr-3">Movie Name:</div>
+      <div class="text-success font-size-20">{{Ticket['movie']['title']}}</div>
+    </div>
+    <div class="d-sm-flex mt-3">
+      <div class="text-white font-size-18 mr-3">Theatre Name:</div>
+      <div class="text-success font-size-20">{{Ticket['movie']['name']}}</div>
+    </div>
+    <div class="d-sm-flex mt-3">
+      <div class="text-white font-size-18 mr-3">Total seats:</div>
+      <div class="text-success font-size-20">{{Ticket['noOfTickets']}}</div>
+    </div>
+    <div class="d-sm-flex mt-3">
+      <div class="text-white font-size-18 mr-3">Slot:</div>
+      <div class="text-success font-size-20">{{Ticket['slot']}}</div>
+    </div>
+    <div class="d-sm-flex mt-3">
+      <div class="text-white font-size-18 mr-3">Amount Paid:</div>
+      <div class="text-success font-size-20">{{Ticket['movie']['ticketCost'] * Ticket['noOfTickets']}}</div>
+    </div>
+    <div class="mt-3 d-sm-flex">
+      <button class="btn btn-primary" [routerLink]="['/home']">Back to Home</button>
+    </div>
+  </div>
+</div>

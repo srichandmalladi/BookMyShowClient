@@ -1,0 +1,10 @@
+<div class="container pt-5">
+  <div>
+    <div class="font-Roboto font-size-30 pt-5 mb-3">
+      Select Your City
+    </div>
+    <select class="form-control" [(ngModel)]="selectedCity" (change)="citySelected()">
+      <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center m-5">
+  <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()" class="col-md-8">
+    <div class="form-group required">
+      <label>TheatreName</label>
+      <input class="form-control" formControlName="TheatreName">
+      <label class="text-danger" *ngIf="formModel.get('TheatreName').touched && formModel.get('TheatreName').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input class="form-control" formControlName="Address">
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input class="form-control" formControlName="City">
+      <label class="text-danger" *ngIf="formModel.get('City').touched && formModel.get('City').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+    <div class="form-group">
+      <label>NoOfSlots</label>
+      <input class="form-control" formControlName="NoOfSlots">
+      <label class="text-danger" *ngIf="formModel.get('NoOfSlots').touched && formModel.get('NoOfSlots').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+    <div class="form-group">
+      <label>NoOfSeats</label>
+      <input class="form-control" formControlName="NoOfSeats">
+      <label class="text-danger" *ngIf="formModel.get('NoOfSeats').touched && formModel.get('NoOfSeats').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+    <div class="form-group">
+      <label>TicketCost</label>
+      <input class="form-control" formControlName="TicketCost">
+      <label class="text-danger" *ngIf="formModel.get('TicketCost').touched && formModel.get('TicketCost').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button type="submit" class="btn btn-lg btn-block" [disabled]="!formModel.valid">Add Theatre</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="card border-0 text-center">
+  <img class="card-img-top" src={{movie.imageUrl}} alt="Image not available">
+  <div class="card-body">
+    <h5 class="card-title">Movie: {{movie.title}}</h5>
+    <h5 class="card-title">Theatre: {{movie.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Rating: {{movie.rating}}</h6>
+    <p class="card-text">{{movie.description}}</p>
+  </div>
+  </div>
+<div class="container">
+  <div class="form-group">
+    <label class="form-label text-left">Select Slot</label>
+    <select [(ngModel)]="Slot" class="form-control">
+      <option disabled>Select Slot</option>
+      <option *ngFor="let i of range()" value="{{i}}">{{i}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control" [(ngModel)]="NoOfTickets" placeholder="Enter no of tickets" />
+  </div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" (click)="openModal(template)">
+    Book Tickets
+  </button>
+
+  <!-- Modal -->
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Cost of Booking: {{NoOfTickets * movie.ticketCost}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Close</button>
+      <button type="button" class="btn btn-primary" (click)="bookTicket()">Proceed</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center m-5">
+  <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()" class="col-md-8">
+    <div class="form-group required">
+      <label>MovieName</label>
+      <input class="form-control" formControlName="MovieName">
+      <label class="text-danger" *ngIf="formModel.get('MovieName').touched && formModel.get('MovieName').errors?.required">
+        This field is mandatory.
+      </label>
+    </div>
+    <div class="form-group">
+      <label>ImageUrl</label>
+      <input class="form-control" formControlName="ImageUrl">
+    </div>
+    <div class="form-group">
+      <label>Genre</label>
+      <input class="form-control" formControlName="Genre">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input class="form-control" formControlName="Description">
+    </div>
+    <div class="form-group">
+      <label>Rating</label>
+      <input class="form-control" formControlName="Rating">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button type="submit" class="btn btn-lg btn-block" [disabled]="!formModel.valid">Add Movie</button>
+      </div>
+    </div>
+  </form>
+ </div>
