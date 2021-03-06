@@ -21,6 +21,7 @@ import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { AddTheatreComponent } from './add-theatre/add-theatre.component';
 import { AddShowComponent } from './add-show/add-show.component';
+import { TicketHistoryComponent } from './ticket-history/ticket-history.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AddShowComponent } from './add-show/add-show.component';
     ViewTicketComponent,
     AddMovieComponent,
     AddTheatreComponent,
-    AddShowComponent
+    AddShowComponent,
+    TicketHistoryComponent
   ],
   imports: [
     BrowserModule,

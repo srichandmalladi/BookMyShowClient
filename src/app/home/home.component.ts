@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   userDetails;
 
-  constructor(private router: Router, private service: UserService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.service.getUserProfile().subscribe(
+    this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res;
         localStorage['userid'] = res['id'];
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     );
   }
   checkRole() {
-    return this.service.roleMatch(['admin']);
+    return this.userService.roleMatch(['admin']);
   }
   onLogout() {
     localStorage.removeItem('token');

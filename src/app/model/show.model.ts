@@ -1,14 +1,12 @@
 export class Show {
-  showId: number;
+  id: number;
   theatreId: number;
   movieId: number;
   slot: number;
-  noOfTicketsBooked: number;
   constructor(args: any) {
-    this.showId = args.showId;
+    this.id = args.id;
     this.theatreId = args.theatreId;
     this.movieId = args.movieId;
     this.slot = args.slot;
-    this.noOfTicketsBooked = args.noOfTicketsBooked;
   }
 }

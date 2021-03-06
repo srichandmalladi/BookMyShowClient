@@ -19,7 +19,7 @@ export class AdminService {
       'description': model.Description,
       'rating': +model.Rating
     });
-    return this.http.post(this.apiurl + '/Movie/Add', movie);
+    return this.http.post(this.apiurl + '/movie/addMovie', movie);
   }
 
   addTheatre(model: any) {
@@ -31,15 +31,14 @@ export class AdminService {
       'noOfSeats': +model.NoOfSeats,
       'ticketCost': +model.TicketCost
     });
-    return this.http.post(this.apiurl + '/Theatre/Add', theatre);
+    return this.http.post(this.apiurl + '/theatre/addTheatre', theatre);
   }
   addShow(model: any) {
     var show = new Show({
       'theatreId': +model.Theatre,
       'movieId': +model.Movie,
-      'slot': +model.Slot,
-      'noOfTicketsBooked': 0
+      'slot': +model.Slot
     });
-    return this.http.post(this.apiurl + '/Show/Add', show);
+    return this.http.post(this.apiurl + '/show/addShow', show);
   }
 }

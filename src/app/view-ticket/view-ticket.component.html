@@ -12,12 +12,16 @@
       <div class="text-success font-size-20">{{Ticket['movie']['name']}}</div>
     </div>
     <div class="d-sm-flex mt-3">
+      <div class="text-white font-size-18 mr-3">Date:</div>
+      <div class="text-success font-size-20">{{Ticket['date']}}</div>
+    </div>
+    <div class="d-sm-flex mt-3">
       <div class="text-white font-size-18 mr-3">Total seats:</div>
       <div class="text-success font-size-20">{{Ticket['noOfTickets']}}</div>
     </div>
     <div class="d-sm-flex mt-3">
       <div class="text-white font-size-18 mr-3">Slot:</div>
-      <div class="text-success font-size-20">{{Ticket['slot']}}</div>
+      <div class="text-success font-size-20">{{time[Ticket['slot']-1]}}</div>
     </div>
     <div class="d-sm-flex mt-3">
       <div class="text-white font-size-18 mr-3">Amount Paid:</div>

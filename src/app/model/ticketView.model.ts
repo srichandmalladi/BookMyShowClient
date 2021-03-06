@@ -1,13 +1,14 @@
-export class Ticket{
-  id: number;
+export class TicketView {
   userId: string;
-  showId: number;
+  title: string;
+  name: string;
   date: Date;
   noOfTicketsBooked: number;
   slot: number;
-  constructor(args) {
+  constructor(args: any) {
     this.userId = args.userId;
-    this.showId = args.showId;
+    this.title = args.title;
+    this.name = args.name;
     this.date = args.date;
     this.noOfTicketsBooked = args.noOfTicketsBooked;
     this.slot = args.slot;

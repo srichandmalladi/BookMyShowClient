@@ -1,5 +1,5 @@
 export class Theatre {
-  theatreId: number;
+  id: number;
   name: string;
   address: string;
   city: string;
@@ -8,7 +8,7 @@ export class Theatre {
   ticketCost: number;
 
   constructor(args: any) {
-    this.theatreId = args.theatreId;
+    this.id = args.id;
     this.name = args.name;
     this.address = args.address;
     this.city = args.city;

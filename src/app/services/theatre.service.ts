@@ -15,17 +15,17 @@ export class TheatreService {
   }
 
   getTheatres(): Observable<Theatre[]>{
-    return this.http.get<Theatre[]>(this.apiurl + '/Theatre');
+    return this.http.get<Theatre[]>(this.apiurl + '/theatre/all');
   }
 
   getMoviesInCity(city: string): Observable<Movie_Theatre[]>{
-    return this.http.get<Movie_Theatre[]>(this.apiurl + '/Movie/getMovies/' + city);
+    return this.http.get<Movie_Theatre[]>(this.apiurl + '/movie/getMoviesByCity/' + city);
   }
 
-  getMovie(showId: string) {
-    return this.http.get<Movie_Theatre>(this.apiurl + '/Movie/getMovie/' + showId);
+  getMovie(showId: number) {
+    return this.http.get<Movie_Theatre>(this.apiurl + '/movie/getMovieByShowId/' + showId);
   }
   getAllMovies() {
-    return this.http.get<Movie[]>(this.apiurl + '/Movie');
+    return this.http.get<Movie[]>(this.apiurl + '/movie/all');
   }
 }

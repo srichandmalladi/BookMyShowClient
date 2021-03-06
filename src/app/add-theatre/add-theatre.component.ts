@@ -11,7 +11,7 @@ import { AdminService } from '../services/admin.service';
 })
 export class AddTheatreComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private service: AdminService, private toastr: ToastrService, private route: Router) { }
+  constructor(private fb: FormBuilder, private adminService: AdminService, private toastr: ToastrService, private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class AddTheatreComponent implements OnInit {
   });
 
   onSubmit() {
-    this.service.addTheatre(this.formModel.value).subscribe(
+    this.adminService.addTheatre(this.formModel.value).subscribe(
       (res: any) => {
         if (res == null) {
           this.formModel.reset();

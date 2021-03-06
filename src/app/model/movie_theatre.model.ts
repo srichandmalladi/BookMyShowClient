@@ -10,7 +10,6 @@ export class Movie_Theatre {
   theatreId: number;
   name: string;
   slot: number;
-  noOfTicketsBooked: number;
   city: string;
   noOfSlots: number;
   noOfSeats: number;
@@ -26,7 +25,6 @@ export class Movie_Theatre {
     this.theatreId = args.description;
     this.name = args.rating;
     this.slot = args.slot;
-    this.noOfTicketsBooked = args.noOfTicketsBooked;
     this.city = args.city;
     this.noOfSlots = args.noOfSlots;
     this.noOfSeats = args.noOfSeats;

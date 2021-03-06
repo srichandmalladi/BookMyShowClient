@@ -12,10 +12,11 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class BookTicketsComponent implements OnInit {
 
-  showId: string;
+  showId: number;
   movie: Movie_Theatre;
   NoOfTickets: number;
   Slot: number;
+  Date: Date;
 
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService,
@@ -47,6 +48,6 @@ export class BookTicketsComponent implements OnInit {
   }
   bookTicket(): void {
     this.modalRef.hide();
-    this.ticketService.booktickets(this.showId, this.NoOfTickets, this.Slot);
+    this.ticketService.booktickets(this.showId, this.NoOfTickets, this.Date, this.Slot);
   }
 }

@@ -8,6 +8,7 @@ import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { HomeComponent } from './home/home.component';
 import { ShowCitiesComponent } from './show-cities/show-cities.component';
 import { ShowMoviesComponent } from './show-movies/show-movies.component';
+import { TicketHistoryComponent } from './ticket-history/ticket-history.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { UserComponent } from './user/user.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
       { path: 'addTheatre', component: AddTheatreComponent, data: { permittedRoles: ['Admin'] } },
       { path: 'addShow', component: AddShowComponent, data: { permittedRoles: ['Admin'] } },
       { path: 'booktickets/:showId', component: BookTicketsComponent },
-      { path: 'viewTicket', component: ViewTicketComponent, canActivate: [AuthGuard] }
+      { path: 'viewTicket', component: ViewTicketComponent },
+      { path: 'ticketHistory', component: TicketHistoryComponent },
     ]
   },
   

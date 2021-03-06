@@ -11,11 +11,11 @@ import { Router } from '@angular/router'
 export class ShowCitiesComponent implements OnInit {
   cities: string[];
   selectedCity: string;
-  constructor(private thservice: TheatreService, private router: Router) {
+  constructor(private theatreService: TheatreService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.thservice.getTheatres().subscribe(
+    this.theatreService.getTheatres().subscribe(
       data => {
         var theatres = data;
         this.cities = Array.from(new Set(theatres.map(th => th.city)));

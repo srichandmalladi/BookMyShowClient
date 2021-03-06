@@ -1,5 +1,5 @@
 export class Movie {
-  movieId: number;
+  id: number;
   title: string;
   imageUrl: string;
   genre: string;
@@ -7,7 +7,7 @@ export class Movie {
   rating: number;
 
   constructor(args: any) {
-    this.movieId = args.movieId;
+    this.id = args.id;
     this.title = args.title;
     this.imageUrl = args.imageUrl;
     this.genre = args.genre;

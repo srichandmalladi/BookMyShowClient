@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AddMovieComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private service: AdminService, private toastr: ToastrService, private route: Router) { }
+  constructor(private fb: FormBuilder, private adminService: AdminService, private toastr: ToastrService, private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class AddMovieComponent implements OnInit {
   });
 
   onSubmit() {
-    this.service.addMovie(this.formModel.value).subscribe(
+    this.adminService.addMovie(this.formModel.value).subscribe(
       (res: any) => {
         if (res == null) {
           this.formModel.reset();

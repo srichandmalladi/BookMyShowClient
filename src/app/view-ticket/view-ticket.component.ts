@@ -11,6 +11,7 @@ export class ViewTicketComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private ticketService: TicketService) { }
   Ticket;
+  time: string[] = ["11:00 AM", "02:00 PM", "06:00 PM", "09:00 PM"];
   ngOnInit(): void {
     this.Ticket = this.ticketService.ticket;
   }

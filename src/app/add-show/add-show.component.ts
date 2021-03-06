@@ -16,7 +16,7 @@ export class AddShowComponent implements OnInit {
 
   constructor(private thservice: TheatreService,
     private fb: FormBuilder,
-    private adminservice: AdminService,
+    private adminService: AdminService,
     private toastr: ToastrService,
     private route: Router) { }
 
@@ -26,6 +26,7 @@ export class AddShowComponent implements OnInit {
   theatresInCity: string[] = [];
   movies: Movie[] = [];
   li: number[] = [];
+  time: string[] = ["11:00 AM", "02:00 PM", "06:00 PM", "09:00 PM"];
 
   ngOnInit(): void {
     this.thservice.getTheatres().subscribe(
@@ -48,14 +49,14 @@ export class AddShowComponent implements OnInit {
   }
   getMoviesAndSlot() {
     this.li = [];
-    var slot = this.theatres.filter(th => th.theatreId).map(th => th.noOfSlots)[0];
+    var slot = this.theatres.filter(th => th.id).map(th => th.noOfSlots)[0];
     this.thservice.getAllMovies().subscribe(data => this.movies = data);
     for (var j = 1; j <= slot; j++) {
       this.li.push(j);
     }
   }
   onSubmit() {
-    this.adminservice.addShow(this.formModel.value).subscribe(
+    this.adminService.addShow(this.formModel.value).subscribe(
       (res: any) => {
         if (res == null) {
           this.formModel.reset();
