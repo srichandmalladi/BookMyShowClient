@@ -19,5 +19,9 @@ export class TicketHistoryComponent implements OnInit {
       this.tickets = data;
     });
   }
+  today = new Date();
+  check(date) {
+    return this.today < new Date(date);
+  }
 
 }

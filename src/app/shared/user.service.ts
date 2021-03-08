@@ -40,15 +40,15 @@ export class UserService {
       FullName: this.formModel.value.FullName,
       Password: this.formModel.value.Passwords.Password
     };
-    return this.http.post(this.BaseURI + '/User/Register', body);
+    return this.http.post(this.BaseURI + '/user/register', body);
   }
 
   login(formData) {
-    return this.http.post(this.BaseURI + '/User/Login', formData);
+    return this.http.post(this.BaseURI + '/user/login', formData);
   }
 
   getUserProfile() {
-    return this.http.get(this.BaseURI + '/UserProfile');
+    return this.http.get(this.BaseURI + '/userProfile');
   }
 
   roleMatch(allowedRoles): boolean {

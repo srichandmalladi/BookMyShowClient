@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TicketService } from '../services/ticket.service';
 
+
 @Component({
   selector: 'app-view-ticket',
   templateUrl: './view-ticket.component.html',
@@ -15,5 +16,4 @@ export class ViewTicketComponent implements OnInit {
   ngOnInit(): void {
     this.Ticket = this.ticketService.ticket;
   }
-
 }

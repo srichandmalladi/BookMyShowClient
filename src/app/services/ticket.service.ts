@@ -49,7 +49,7 @@ export class TicketService {
   makeBooking(movie: Movie_Theatre, noOfTickets: number, slot: number, date: Date) {
     var ticket;
     ticket = new Ticket({ 'showId': movie.showId, 'userId': localStorage.getItem('userid'), 'date': date, 'noOfTicketsBooked': noOfTickets, 'slot': +slot });
-    return this.http.post(this.apiurl + "/ticket/addTicket", ticket);
+    return this.http.post(this.apiurl + "/ticket/add", ticket);
   }
   getTicketsByShowId(showId: number) {
     return this.http.get<Ticket>(this.apiurl + "/ticket/getTicketsByShowId/" + showId);

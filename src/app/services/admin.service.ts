@@ -19,7 +19,7 @@ export class AdminService {
       'description': model.Description,
       'rating': +model.Rating
     });
-    return this.http.post(this.apiurl + '/movie/addMovie', movie);
+    return this.http.post(this.apiurl + '/movie/add', movie);
   }
 
   addTheatre(model: any) {
@@ -31,7 +31,7 @@ export class AdminService {
       'noOfSeats': +model.NoOfSeats,
       'ticketCost': +model.TicketCost
     });
-    return this.http.post(this.apiurl + '/theatre/addTheatre', theatre);
+    return this.http.post(this.apiurl + '/theatre/add', theatre);
   }
   addShow(model: any) {
     var show = new Show({
@@ -39,6 +39,6 @@ export class AdminService {
       'movieId': +model.Movie,
       'slot': +model.Slot
     });
-    return this.http.post(this.apiurl + '/show/addShow', show);
+    return this.http.post(this.apiurl + '/show/add', show);
   }
 }
