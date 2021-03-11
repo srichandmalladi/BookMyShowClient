@@ -1,28 +1,33 @@
-import { ToastrService } from 'ngx-toastr';
-import { UserService } from './../../shared/user.service';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: []
 })
+
 export class LoginComponent implements OnInit {
-  formModel = {
-    UserName: '',
-    Password: ''
+  loginForm: FormGroup;
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService)
+  {
+    this.loginForm = new FormGroup({
+      userName: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
   }
-  constructor(private service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     if (localStorage.getItem('token') != null)
       this.router.navigateByUrl('/home');
   }
 
-  onSubmit(form: NgForm) {
-    this.service.login(form.value).subscribe(
+  onSubmit() {
+    this.userService.login(this.loginForm.value).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('/home');

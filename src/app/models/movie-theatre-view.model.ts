@@ -1,5 +1,4 @@
-export class Movie_Theatre {
-
+export class MovieTheatreView {
   movieId: number;
   title: string;
   imageUrl: string;
@@ -14,6 +13,7 @@ export class Movie_Theatre {
   noOfSlots: number;
   noOfSeats: number;
   ticketCost: number;
+
   constructor(args: any) {
     this.movieId = args.movieId;
     this.title = args.title;

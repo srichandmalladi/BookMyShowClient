@@ -1,43 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
+import { Theatre } from '../models/theatre.model';
 import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-add-theatre',
-  templateUrl: './add-theatre.component.html',
-  styleUrls: ['./add-theatre.component.sass']
+  templateUrl: './add-theatre.component.html'
 })
-export class AddTheatreComponent implements OnInit {
+export class AddTheatreComponent {
 
-  constructor(private fb: FormBuilder, private adminService: AdminService, private toastr: ToastrService, private route: Router) { }
+  theatreForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private adminService: AdminService,
+    private toastr: ToastrService,
+    private route: Router)
+  {
+    this.theatreForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      address: new FormControl(''),
+      city: new FormControl('', Validators.required),
+      noOfSlots: new FormControl('', Validators.required),
+      noOfSeats: new FormControl('', Validators.required),
+      ticketCost: new FormControl('', Validators.required)
+    });
   }
-  formModel = this.fb.group({
-    TheatreName: ['', Validators.required],
-    Address: [''],
-    City: ['', Validators.required],
-    NoOfSlots: ['', Validators.required],
-    NoOfSeats: ['', Validators.required],
-    TicketCost: ['', Validators.required]
-  });
 
   onSubmit() {
-    this.adminService.addTheatre(this.formModel.value).subscribe(
+    this.adminService.addTheatre(new Theatre(this.theatreForm.value)).subscribe(
       (res: any) => {
-        if (res == null) {
-          this.formModel.reset();
+        if (!res) {
+          this.theatreForm.reset();
           this.toastr.success('Theater added', 'Registration successful.');
           this.route.navigate(['/home']);
         }
         else {
-          this.toastr.error('Adding theater failed');
+          this.toastr.error('Adding theater failed', 'error occcured');
         }
-      },
-      err => {
-        console.log(err);
       }
     );
   }

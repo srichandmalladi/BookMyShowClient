@@ -1,32 +1,37 @@
 <div class="d-flex justify-content-center m-5">
-  <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()" class="col-md-8">
+  <form [formGroup]="movieForm" autocomplete="off" class="col-md-8">
+
     <div class="form-group required">
       <label>MovieName</label>
-      <input class="form-control" formControlName="MovieName">
-      <label class="text-danger" *ngIf="formModel.get('MovieName').touched && formModel.get('MovieName').errors?.required">
+      <input class="form-control" formControlName="title">
+      <label class="text-danger" *ngIf="movieForm.get('title').touched && movieForm.get('title').errors">
         This field is mandatory.
       </label>
     </div>
+
     <div class="form-group">
       <label>ImageUrl</label>
-      <input class="form-control" formControlName="ImageUrl">
+      <input class="form-control" formControlName="imageUrl">
     </div>
+
     <div class="form-group">
       <label>Genre</label>
-      <input class="form-control" formControlName="Genre">
+      <input class="form-control" formControlName="genre">
     </div>
+
     <div class="form-group">
       <label>Description</label>
-      <input class="form-control" formControlName="Description">
+      <input class="form-control" formControlName="description">
     </div>
+
     <div class="form-group">
       <label>Rating</label>
-      <input class="form-control" formControlName="Rating">
+      <input class="form-control" formControlName="rating" type="number">
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-8 offset-md-2">
-        <button type="submit" class="btn btn-lg btn-block" [disabled]="!formModel.valid">Add Movie</button>
-      </div>
+
+    <div class="form-group col-md-8 offset-md-2">
+      <button class="btn btn-lg btn-block btn-primary" [disabled]="!movieForm.valid" (click)="onSubmit()">Add Movie</button>
     </div>
+
   </form>
  </div>

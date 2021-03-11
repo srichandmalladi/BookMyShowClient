@@ -1,53 +1,80 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Movie_Theatre } from '../model/movie_theatre.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+
+import { MovieTheatreView } from '../models/movie-theatre-view.model';
+import { Ticket } from '../models/ticket.model';
 import { TheatreService } from '../services/theatre.service';
 import { TicketService } from '../services/ticket.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-book-tickets',
-  templateUrl: './book-tickets.component.html',
-  styleUrls: ['./book-tickets.component.sass']
+  templateUrl: './book-tickets.component.html'
 })
 export class BookTicketsComponent implements OnInit {
 
   showId: number;
-  movie: Movie_Theatre;
-  NoOfTickets: number;
-  Slot: number;
-  Date: Date;
-
+  movie: MovieTheatreView;
+  bookingForm: FormGroup;
+  timeSlots: string[] = ["11:00 AM", "02:00 PM", "06:00 PM", "09:00 PM"];
+  slots: Number[];
   modalRef: BsModalRef;
+
   constructor(private modalService: BsModalService,
-    private route: ActivatedRoute,
+    private actRoute: ActivatedRoute,
+    private toastr: ToastrService,
+    private route: Router,
     private theaterService: TheatreService,
-    private ticketService: TicketService) { }
+    private ticketService: TicketService)
+  {
+    this.bookingForm = new FormGroup({
+      noOfTicketsBooked: new FormControl('', Validators.required),
+      slot: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required)
+    });
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
+    this.actRoute.params.subscribe(
       (param: Params) => {
         this.showId = param['showId'];
       }
     );
+    this.slots = [];
     this.theaterService.getMovie(this.showId).subscribe(data => {
       this.movie = data;
+      for (var j = 1; j <= this.movie.noOfSlots; j++) {
+        this.slots.push(j);
+      }
     });
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openModal(modalTemplate: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(modalTemplate);
   }
 
-  range() {
-    var li: Number[] = [];
-    for (var j = 1; j <= this.movie.slot; j++) {
-      li.push(j);
-    }
-    return li;
-  }
   bookTicket(): void {
+    var ticket: Ticket = new Ticket(this.bookingForm.value);
+    var totalTicketsBooked: number;
     this.modalRef.hide();
-    this.ticketService.booktickets(this.showId, this.NoOfTickets, this.Date, this.Slot);
+
+    this.ticketService.getTicketsByShowId(this.showId).subscribe(data => {
+      totalTicketsBooked = 0;
+      totalTicketsBooked = totalTicketsBooked + data.noOfTicketsBooked
+    });
+
+    this.theaterService.getMovie(this.showId).subscribe(data => {
+      if (totalTicketsBooked + ticket.noOfTicketsBooked <= data.noOfSeats) {
+        this.ticketService.bookTickets(ticket).subscribe(id => {
+          this.route.navigate(['/home/viewTicket/' + id]);
+          this.toastr.success('Booking successful')
+        });
+      }
+      else {
+        this.toastr.error("Booking failed seats not available");
+      }
+    });
   }
 }

@@ -12,6 +12,6 @@ export class Movie {
     this.imageUrl = args.imageUrl;
     this.genre = args.genre;
     this.description = args.description;
-    this.rating = args.rating;
+    this.rating = +args.rating;
   }
 }

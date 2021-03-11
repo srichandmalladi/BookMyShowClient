@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand text-white" [routerLink]="['/home']">Book my show</a>
-  <div *ngIf="checkRole(); then thenBlock else elseBlock"></div>
+  <div *ngIf="isAdmin; then thenBlock else elseBlock"></div>
   <ng-template #thenBlock>
     <a class="nav-link text-white" [routerLink]="['addMovie']">Add Movie</a>
     <a class="nav-link text-white" [routerLink]="['addTheatre']">Add Theatre</a>

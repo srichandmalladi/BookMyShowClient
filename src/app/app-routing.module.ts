@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { AddShowComponent } from './add-show/add-show.component';
 import { AddTheatreComponent } from './add-theatre/add-theatre.component';
@@ -32,7 +33,7 @@ const routes: Routes = [
       { path: 'addTheatre', component: AddTheatreComponent, data: { permittedRoles: ['Admin'] } },
       { path: 'addShow', component: AddShowComponent, data: { permittedRoles: ['Admin'] } },
       { path: 'booktickets/:showId', component: BookTicketsComponent },
-      { path: 'viewTicket', component: ViewTicketComponent },
+      { path: 'viewTicket/:ticketId', component: ViewTicketComponent },
       { path: 'ticketHistory', component: TicketHistoryComponent },
     ]
   },

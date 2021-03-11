@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\app",
-    "\\src\\app\\show-cities"
+    "\\dist"
   ],
-  "SelectedNode": "\\src\\app\\show-cities\\show-cities.component.html",
+  "SelectedNode": "\\dist",
   "PreviewInSolutionExplorer": false
 }

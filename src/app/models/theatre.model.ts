@@ -12,8 +12,8 @@ export class Theatre {
     this.name = args.name;
     this.address = args.address;
     this.city = args.city;
-    this.noOfSlots = args.noOfSlots;
-    this.noOfSeats = args.noOfSeats;
-    this.ticketCost = args.ticketCost;
+    this.noOfSlots = +args.noOfSlots;
+    this.noOfSeats = +args.noOfSeats;
+    this.ticketCost = +args.ticketCost;
   }
 }

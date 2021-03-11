@@ -1,44 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Movie } from '../model/movie.model';
-import { Show } from '../model/show.model';
-import { Theatre } from '../model/theatre.model';
+
+import { Movie } from '../models/movie.model';
+import { Show } from '../models/show.model';
+import { Theatre } from '../models/theatre.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AdminService {
-  private apiurl = "http://localhost:59491/api"
+
+  private apiurl = "http://localhost:59491/api";
+
   constructor(private http: HttpClient) { }
 
-  addMovie(model: any) {
-    var movie = new Movie({
-      'title': model.MovieName,
-      'imageUrl': model.ImageUrl,
-      'genre': model.Genre,
-      'description': model.Description,
-      'rating': +model.Rating
-    });
+  addMovie(movie: Movie) {
     return this.http.post(this.apiurl + '/movie/add', movie);
   }
 
-  addTheatre(model: any) {
-    var theatre = new Theatre({
-      'name': model.TheatreName,
-      'address': model.Address,
-      'city': model.City,
-      'noOfSlots': +model.NoOfSlots,
-      'noOfSeats': +model.NoOfSeats,
-      'ticketCost': +model.TicketCost
-    });
+  addTheatre(theatre: Theatre) {
     return this.http.post(this.apiurl + '/theatre/add', theatre);
   }
-  addShow(model: any) {
-    var show = new Show({
-      'theatreId': +model.Theatre,
-      'movieId': +model.Movie,
-      'slot': +model.Slot
-    });
+
+  addShow(show: Show) {
     return this.http.post(this.apiurl + '/show/add', show);
   }
 }

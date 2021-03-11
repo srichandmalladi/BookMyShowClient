@@ -1,49 +1,63 @@
-<div class="d-flex-column m-2">
-<div class="card border-0 text-center mx-auto" style="width: 20rem;">
-  <img class="card-img-top" src={{movie.imageUrl}} alt="Image not available">
-  <div class="card-body">
-    <h5 class="card-title">Movie: {{movie.title}}</h5>
-    <h5 class="card-title">Theatre: {{movie.name}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Rating: {{movie.rating}}</h6>
-    <p class="card-text">{{movie.description}}</p>
+<div class="d-flex-column m-2" *ngIf="movie">
+  <div class="card border-0 text-center mx-auto" style="width: 20rem;">
+    <img class="card-img-top" src={{movie.imageUrl}} alt="Image not available">
+    <div class="card-body">
+      <h5 class="card-title">Movie: {{movie.title}}</h5>
+      <h5 class="card-title">Theatre: {{movie.name}}</h5>
+      <h6 class="card-text mb-2">Rating: {{movie.rating}}</h6>
+      <p class="card-text">{{movie.description}}</p>
+    </div>
   </div>
-</div>
-<div class="container">
-  <div class="form-group">
-    <label class="form-label text-left">Select Slot</label>
-    <select [(ngModel)]="Slot" class="form-control">
-      <option disabled>Select Slot</option>
-      <option *ngFor="let i of range()" value="{{i}}">{{i}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label class="form-label text-left">Select Date </label>
-    <input type="date" class="form-control" [(ngModel)]="Date"/>
-  </div>
-  <div class="form-group">
-    <label class="form-label text-left">Enter no of tickets</label>
-    <input type="number" class="form-control" [(ngModel)]="NoOfTickets" placeholder="Enter no of tickets" />
-  </div>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" (click)="openModal(template)">
-    Book Tickets
-  </button>
 
-  <!-- Modal -->
-  <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">×</span>
+  <div class="container">
+    <form [formGroup]="bookingForm" autocomplete="off" class="col-md-8">
+
+      <div class="form-group">
+        <label class="form-label text-left">Select Slot</label>
+        <select formControlName="slot" class="form-control">
+          <option disabled>Select Slot</option>
+          <option *ngFor="let i of slots" value="{{i}}">{{timeSlots[i-1]}}</option>
+        </select>
+        <label class="text-danger" *ngIf="bookingForm.get('slot').touched && bookingForm.get('slot').errors">
+          This field is mandatory.
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label text-left">Select Date </label>
+        <input type="date" class="form-control" formControlName="date" />
+        <label class="text-danger" *ngIf="bookingForm.get('date').touched && bookingForm.get('date').errors">
+          This field is mandatory.
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label text-left">Enter no of tickets</label>
+        <input type="number" class="form-control" formControlName="noOfTicketsBooked" placeholder="Enter no of tickets" />
+        <label class="text-danger" *ngIf="bookingForm.get('noOfTicketsBooked').touched && bookingForm.get('noOfTicketsBooked').errors">
+          This field is mandatory.
+        </label>
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="openModal(modalTemplate)" [disabled]="!bookingForm.valid">
+        Book Tickets
       </button>
-    </div>
-    <div class="modal-body">
-      Cost of Booking: {{NoOfTickets * movie.ticketCost}}
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Close</button>
-      <button type="button" class="btn btn-primary" (click)="bookTicket()">Proceed</button>
-    </div>
-  </ng-template>
-</div>
+
+      <ng-template #modalTemplate>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Confirmation</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Cost of Booking: {{bookingForm.value.noOfTicketsBooked * movie.ticketCost}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="bookTicket()">Proceed</button>
+        </div>
+      </ng-template>
+    </form>
   </div>
+</div>
