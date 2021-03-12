@@ -12,8 +12,12 @@ import { UserService } from './../../services/user.service';
 })
 
 export class LoginComponent implements OnInit {
+
   loginForm: FormGroup;
-  constructor(private userService: UserService, private router: Router, private toastr: ToastrService)
+
+  constructor(private userService: UserService,
+    private router: Router,
+    private toastr: ToastrService)
   {
     this.loginForm = new FormGroup({
       userName: new FormControl('', Validators.required),

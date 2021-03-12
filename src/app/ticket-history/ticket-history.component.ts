@@ -10,7 +10,7 @@ import { TicketService } from '../services/ticket.service';
 
 export class TicketHistoryComponent implements OnInit {
 
-  tickets: TicketView[];
+  tickets: any[];
   timeSlots: string[] = ["11:00 AM", "02:00 PM", "06:00 PM", "09:00 PM"];
   presentDay = new Date();
 
@@ -19,11 +19,7 @@ export class TicketHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.ticketService.getTicketsByUserId(localStorage.getItem('userId')).subscribe(data => {
       this.tickets = data;
+      this.tickets.forEach(ticket => ticket.isPast = this.presentDay > new Date(ticket.date))
     });
   }
-
-  check(date :Date) {
-    return this.presentDay < new Date(date);
-  }
-
 }

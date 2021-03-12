@@ -11,6 +11,7 @@ import { UserService } from './../../services/user.service';
 })
 
 export class RegistrationComponent implements OnInit {
+
   registrationForm: FormGroup;
 
   constructor(public userService: UserService,
@@ -67,5 +68,4 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
-
 }

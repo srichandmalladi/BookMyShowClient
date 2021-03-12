@@ -25,7 +25,7 @@ export class AddShowComponent implements OnInit {
   timeSlots: string[] = ["11:00 AM", "02:00 PM", "06:00 PM", "09:00 PM"];
   showForm: FormGroup;
 
-  constructor(private thservice: TheatreService,
+  constructor(private theatreService: TheatreService,
     private adminService: AdminService,
     private toastr: ToastrService,
     private route: Router)
@@ -39,7 +39,7 @@ export class AddShowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.thservice.getTheatres().subscribe(
+    this.theatreService.getTheatres().subscribe(
       data => {
         this.allTheatres = data;
         this.cities = Array.from(new Set(this.allTheatres.map(th => th.city)));
@@ -53,8 +53,8 @@ export class AddShowComponent implements OnInit {
 
   getMoviesAndSlot() {
     this.slots = [];
-    var slot = this.theatres.filter(th => th.id).map(th => th.noOfSlots)[0];
-    this.thservice.getAllMovies().subscribe(data => this.movies = data);
+    var slot = this.theatres.filter(th => th.id == this.showForm.value.theatreId).map(th => th.noOfSlots)[0];
+    this.theatreService.getAllMovies().subscribe(data => this.movies = data);
     for (var j = 1; j <= slot; j++) {
       this.slots.push(j);
     }

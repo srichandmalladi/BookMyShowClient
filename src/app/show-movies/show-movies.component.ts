@@ -8,6 +8,7 @@ import { TheatreService } from '../services/theatre.service';
   selector: 'app-show-movies',
   templateUrl: './show-movies.component.html'
 })
+
 export class ShowMoviesComponent implements OnInit {
 
   city: string;

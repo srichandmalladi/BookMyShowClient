@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { RoleGuardService } from '../auth/role-guard.service';
 import { UserService } from './../services/user.service';
 
 @Component({
@@ -13,7 +14,9 @@ export class HomeComponent implements OnInit {
   userDetails: any;
   isAdmin: boolean;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router,
+    private userService: UserService,
+    private roleGuardService: RoleGuardService) { }
 
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
@@ -25,7 +28,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
     );
-    this.isAdmin = this.userService.roleMatch(['admin']);
+    this.isAdmin = this.roleGuardService.roleGuard(['admin']);
   }
 
   onLogout() {

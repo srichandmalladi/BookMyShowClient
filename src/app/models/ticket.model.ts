@@ -8,7 +8,7 @@ export class Ticket{
 
   constructor(args: any) {
     this.id = args.id;
-    this.userId = localStorage.getItem('userid');;
+    this.userId = localStorage.getItem('userId');;
     this.showId = +args.showId;
     this.date = args.date;
     this.noOfTicketsBooked = +args.noOfTicketsBooked;

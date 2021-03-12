@@ -13,6 +13,7 @@ import { TicketService } from '../services/ticket.service';
   selector: 'app-book-tickets',
   templateUrl: './book-tickets.component.html'
 })
+
 export class BookTicketsComponent implements OnInit {
 
   showId: number;
@@ -60,13 +61,14 @@ export class BookTicketsComponent implements OnInit {
     var totalTicketsBooked: number;
     this.modalRef.hide();
 
-    this.ticketService.getTicketsByShowId(this.showId).subscribe(data => {
+    this.ticketService.getTicketsByShowId(this.showId).subscribe((data: Ticket[])=> {
       totalTicketsBooked = 0;
-      totalTicketsBooked = totalTicketsBooked + data.noOfTicketsBooked
+      data.forEach(ticket => totalTicketsBooked = totalTicketsBooked + ticket.noOfTicketsBooked);      
     });
 
     this.theaterService.getMovie(this.showId).subscribe(data => {
       if (totalTicketsBooked + ticket.noOfTicketsBooked <= data.noOfSeats) {
+        ticket.showId = +this.showId;
         this.ticketService.bookTickets(ticket).subscribe(id => {
           this.route.navigate(['/home/viewTicket/' + id]);
           this.toastr.success('Booking successful')

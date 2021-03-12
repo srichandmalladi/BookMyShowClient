@@ -10,6 +10,7 @@ import { AdminService } from '../services/admin.service';
   selector: 'app-add-theatre',
   templateUrl: './add-theatre.component.html'
 })
+
 export class AddTheatreComponent {
 
   theatreForm: FormGroup;

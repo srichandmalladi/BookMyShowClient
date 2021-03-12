@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Movie } from '../models/movie.model';
 import { MovieTheatreView } from '../models/movie-theatre-view.model';
 import { Theatre } from '../models/theatre.model';
@@ -8,7 +9,9 @@ import { Theatre } from '../models/theatre.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TheatreService {
+
   private apiurl = "http://localhost:59491/api"
 
   constructor(private http: HttpClient) { }
